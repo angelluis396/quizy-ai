@@ -6,10 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import WordCloud from "../WordCloud";
+import WordCloud from "@/components/WordCloud";
 import { prisma } from "@/lib/db";
-
-import React from 'react'
 
 type Props = {}
 
@@ -23,8 +21,9 @@ const HotTopicsCard = (props: Props) => {
           </CardDescription>
       </CardHeader>
       <CardContent className="pl-2">
-        {/* <WordCloud formattedTopics={formattedTopics} /> */}
+        <WordCloud />
       </CardContent>
     </Card>
   )
 }
+export default HotTopicsCard;

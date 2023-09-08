@@ -1,7 +1,7 @@
 // This was created by Elliot Chong, inspired from a video created by John Tan Chong Min
 // This was created by Elliot to work with Javascript since the originally created library was for Python
 // This file essentially allows the application to utilize chatGPT to generate quiz questions
-// ChatGPT does not always format JSON properly so this tool was created to combat those issues
+// This is necessary because ChatGPT has issues at times formatting JSON properly i.e forgetting to close double qoutes
 
 import { Configuration, OpenAIApi } from "openai";
  

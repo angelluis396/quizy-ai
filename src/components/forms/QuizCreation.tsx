@@ -14,12 +14,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "../ui/button";
-// import { Input } from "../ui/input";
+import { Input } from "../ui/input";
 import { BookOpen, CopyCheck } from "lucide-react";
 import { Separator } from "../ui/separator";
-// import axios, { AxiosError } from "axios";
-// import { useMutation } from "@tanstack/react-query";
-// import { useToast } from "../ui/use-toast";
+import axios, { AxiosError } from "axios";
+import { useMutation } from "@tanstack/react-query";
+import { useToast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
 import {
   Card,
@@ -30,8 +30,6 @@ import {
 } from "@/components/ui/card";
 // import LoadingQuestions from "../LoadingQuestions";
 
-
-
 type Props = {
   topic: string;
 };
@@ -39,11 +37,22 @@ type Props = {
 type Input = z.infer<typeof quizCreationSchema>;
 
 const QuizCreation = (props: Props) => {
+  const router = useRouter();
+  const [showLoader, setShowLoader] = React.useState(false);
+  const [finishedLoading, setFinishedLoading] = React.useState(false);
+  const { toast } = useToast();
+
+  const { mutate: getQuestions, isLoading } = useMutation({
+    mutationFn: async ({ amount, topic, type }: Input) => {
+      const response = await axios.post("/api/game", { amount, topic, type });
+      return response.data;
+    },
+  });
 
   const form = useForm<Input>({
     resolver: zodResolver(quizCreationSchema),
     defaultValues: {
-      topic: topicParam,
+      topic: "",
       type: "mcq",
       amount: 3,
     },
@@ -76,11 +85,12 @@ const QuizCreation = (props: Props) => {
       },
     });
   };
+
   form.watch();
 
-  if (showLoader) {
-    return <LoadingQuestions finished={finishedLoading} />;
-  }
+  // if (showLoader) {
+  //   return <LoadingQuestions finished={finishedLoading} />;
+  // }
 
 
   return (
