@@ -2,7 +2,7 @@ import { prisma } from "@/lib/db";
 import { checkAnswerSchema } from "@/schemas/questions";
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
-// import stringSimilarity from "string-similarity";
+import stringSimilarity from "string-similarity";
 
 export async function POST(req: Request, res: Response) {
   try {

@@ -5,8 +5,6 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import axios from "axios";
 
-
-// /api/game
 export async function POST(req: Request, res: Response) {
   try {
     const session = await getAuthSession();
@@ -62,6 +60,7 @@ export async function POST(req: Request, res: Response) {
       };
 
       const manyData = data.questions.map((question: mcqQuestion) => {
+        // mix up the options lol
         const options = [
           question.option1,
           question.option2,
@@ -130,12 +129,10 @@ export async function GET(req: Request, res: Response) {
     const url = new URL(req.url);
     const gameId = url.searchParams.get("gameId");
     if (!gameId) {
-      return NextResponse.json(
-        { error: "You must provide a game id." },
+      return NextResponse.json({ error: "You must provide a game id." },
         {
           status: 400,
-        }
-      );
+        });
     }
 
     const game = await prisma.game.findUnique({

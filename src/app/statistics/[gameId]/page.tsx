@@ -1,6 +1,6 @@
 import { buttonVariants } from "@/components/ui/button";
 import { prisma } from "@/lib/db";
-import { getAuthSession } from "@/lib/nextauth";
+import { getAuthSession } from "@/lib/nextAuth";
 import { LucideLayoutDashboard } from "lucide-react";
 import Link from "next/link";
 

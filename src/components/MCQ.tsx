@@ -161,6 +161,7 @@ const MCQ = ({ game }: Props) => {
               {game.topic}
             </span>
           </p>
+
           <div className="flex self-start mt-3 text-slate-400">
             <Timer className="mr-2" />
             {formatTimeDelta(differenceInSeconds(now, game.timeStarted))}
@@ -171,6 +172,7 @@ const MCQ = ({ game }: Props) => {
           wrong_answers={stats.wrong_answers}
         />
       </div>
+
       <Card className="w-full mt-4">
         <CardHeader className="flex flex-row items-center">
           <CardTitle className="mr-5 text-center divide-y divide-zinc-600/50">
@@ -184,6 +186,7 @@ const MCQ = ({ game }: Props) => {
           </CardDescription>
         </CardHeader>
       </Card>
+
       <div className="flex flex-col items-center justify-center w-full mt-4">
         {options.map((option, index) => {
           return (
@@ -202,6 +205,7 @@ const MCQ = ({ game }: Props) => {
             </Button>
           );
         })}
+
         <Button
           variant="default"
           className="mt-2"

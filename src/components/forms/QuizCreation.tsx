@@ -28,7 +28,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// import LoadingQuestions from "../LoadingQuestions";
+import LoadingQuestions from "../LoadingQuestions";
 
 type Props = {
   topic: string;
@@ -36,7 +36,7 @@ type Props = {
 
 type Input = z.infer<typeof quizCreationSchema>;
 
-const QuizCreation = (props: Props) => {
+const QuizCreation = ({ topic: topicParam }: Props) => {
   const router = useRouter();
   const [showLoader, setShowLoader] = React.useState(false);
   const [finishedLoading, setFinishedLoading] = React.useState(false);
@@ -45,6 +45,7 @@ const QuizCreation = (props: Props) => {
   const { mutate: getQuestions, isLoading } = useMutation({
     mutationFn: async ({ amount, topic, type }: Input) => {
       const response = await axios.post("/api/game", { amount, topic, type });
+      console.log(response.data, "hey")
       return response.data;
     },
   });
@@ -52,7 +53,7 @@ const QuizCreation = (props: Props) => {
   const form = useForm<Input>({
     resolver: zodResolver(quizCreationSchema),
     defaultValues: {
-      topic: "",
+      topic: topicParam,
       type: "mcq",
       amount: 3,
     },
@@ -72,6 +73,7 @@ const QuizCreation = (props: Props) => {
             });
           }
         }
+        console.log({data})
       },
       onSuccess: ({ gameId }: { gameId: string }) => {
         setFinishedLoading(true);
@@ -85,13 +87,11 @@ const QuizCreation = (props: Props) => {
       },
     });
   };
+  form.watch()
 
-  form.watch();
-
-  // if (showLoader) {
-  //   return <LoadingQuestions finished={finishedLoading} />;
-  // }
-
+  if (showLoader) {
+    return <LoadingQuestions finished={finishedLoading} />;
+  }
 
   return (
     <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -101,38 +101,32 @@ const QuizCreation = (props: Props) => {
             <CardDescription> Choose a Topic </CardDescription>
           </CardTitle>
         </CardHeader>
-
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <FormField
                 control={form.control}
                 name="topic"
-                render={({ field }) => (
+                render={({ field }: {field: any}) => (
                   <FormItem>
                     <FormLabel>Topic</FormLabel>
-
                     <FormControl>
                       <Input placeholder="Enter a topic" {...field} />
                     </FormControl>
-
                     <FormDescription>
                       Please provide any topic you would like to be quizzed on
                       here.
                     </FormDescription>
-
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="amount"
-                render={({ field }) => (
+                render={({ field }: {field: any}) => (
                   <FormItem>
                     <FormLabel>Number of Questions</FormLabel>
-
                     <FormControl>
                       <Input
                         placeholder="How many questions?"
@@ -145,12 +139,10 @@ const QuizCreation = (props: Props) => {
                         max={10}
                       />
                     </FormControl>
-
                     <FormDescription>
                       You can choose how many questions you would like to be
                       quizzed on here.
                     </FormDescription>
-
                     <FormMessage />
                   </FormItem>
                 )}
@@ -169,9 +161,7 @@ const QuizCreation = (props: Props) => {
                 >
                   <CopyCheck className="w-4 h-4 mr-2" /> Multiple Choice
                 </Button>
-
                 <Separator orientation="vertical" />
-
                 <Button
                   variant={
                     form.getValues("type") === "open_ended"
@@ -189,7 +179,6 @@ const QuizCreation = (props: Props) => {
               <Button disabled={isLoading} type="submit">
                 Submit
               </Button>
-              
             </form>
           </Form>
         </CardContent>

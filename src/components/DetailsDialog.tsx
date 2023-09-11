@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Github, HelpCircle, Youtube } from "lucide-react";
+import { Github, HelpCircle } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -25,7 +25,7 @@ const DetailsDialog = (props: Props) => {
       </DialogTrigger>
       <DialogContent className="w-[70vw] max-w-[100vw] md:w-[50vw]">
         <DialogHeader>
-          <DialogTitle className="text-2xl">Welcome to Quizmify!</DialogTitle>
+          <DialogTitle className="text-2xl">Welcome to Quizy AI!</DialogTitle>
           <DialogDescription>
             <div className="flex items-center gap-3 my-2">
               <p className="flex items-center">
@@ -35,15 +35,6 @@ const DetailsDialog = (props: Props) => {
                   href="https://github.com/elliott-chong/quizmify"
                 >
                   GitHub
-                </Link>
-              </p>
-              <p className="flex items-center">
-                <Youtube className="w-5 h-5" />
-                <Link
-                  className="ml-1 underline"
-                  href="https://youtube.com/@elliottchong"
-                >
-                  YouTube
                 </Link>
               </p>
             </div>
