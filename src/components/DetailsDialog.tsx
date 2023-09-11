@@ -32,17 +32,17 @@ const DetailsDialog = (props: Props) => {
                 <Github className="w-5 h-5" />
                 <Link
                   className="ml-1 underline"
-                  href="https://github.com/elliott-chong/quizmify"
+                  href="https://github.com/angelluis396/quizy-ai"
                 >
                   GitHub
                 </Link>
               </p>
             </div>
             <p className="my-2 mt-4 ">
-              Are you tired of mundane and repetitive quizzes? Say goodbye to
-              the ordinary and embrace the extraordinary with Quizmefy! Our
-              platform is revolutionizing the quiz and trivia experience by
-              harnessing the immense potential of artificial intelligence.
+              Welcome to Quizy AI, where the world of knowledge is at your fingertips! Dive into a quiz experience like no other, 
+              powered by ChatGPT. Whether you're a pop culture guru, TV show enthusiast, or eager to master a new subject, Quizy 
+              AI crafts custom quizzes just for you. Prepare to challenge your wits, expand your horizons, and quiz your way to 
+              brilliance!
             </p>
             <hr />
             <p className="my-2 font-semibold">
