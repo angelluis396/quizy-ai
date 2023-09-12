@@ -45,7 +45,6 @@ const QuizCreation = ({ topic: topicParam }: Props) => {
   const { mutate: getQuestions, isLoading } = useMutation({
     mutationFn: async ({ amount, topic, type }: Input) => {
       const response = await axios.post("/api/game", { amount, topic, type });
-      console.log(response.data, "hey")
       return response.data;
     },
   });
@@ -73,7 +72,6 @@ const QuizCreation = ({ topic: topicParam }: Props) => {
             });
           }
         }
-        console.log({data})
       },
       onSuccess: ({ gameId }: { gameId: string }) => {
         setFinishedLoading(true);
