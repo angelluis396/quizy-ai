@@ -3,7 +3,6 @@ import { prisma } from "@/lib/db";
 import { getAuthSession } from "@/lib/nextAuth";
 import { LucideLayoutDashboard } from "lucide-react";
 import Link from "next/link";
-
 import { redirect } from "next/navigation";
 import React from "react";
 import ResultsCard from "@/components/statistics/ResultsCard";
@@ -12,12 +11,11 @@ import TimeTakenCard from "@/components/statistics/TimeTakenCard";
 import QuestionsList from "@/components/statistics/QuestionsList";
 
 type Props = {
-  params: {
-    gameId: string;
-  };
+  params: Promise<{ gameId: string }>; // Update type to Promise
 };
 
-const Statistics = async ({ params: { gameId } }: Props) => {
+const Statistics = async ({ params }: Props) => {
+  const { gameId } = await params; // Await params and destructure gameId
   const session = await getAuthSession();
   if (!session?.user) {
     return redirect("/");

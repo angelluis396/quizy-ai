@@ -1,5 +1,4 @@
 import React from "react";
-
 import { getAuthSession } from "@/lib/nextAuth";
 import { redirect } from "next/navigation";
 import QuizCreation from "@/components/forms/QuizCreation";
@@ -10,17 +9,18 @@ export const metadata = {
 };
 
 interface Props {
-  searchParams: {
+  searchParams: Promise<{ // Note: Type updated to reflect Promise
     topic?: string;
-  };
+  }>;
 }
 
 const QuizPage = async ({ searchParams }: Props) => {
+  const resolvedSearchParams = await searchParams; // Await the Promise
   const session = await getAuthSession();
   if (!session?.user) {
     redirect("/");
   }
-  return <QuizCreation topic={searchParams.topic ?? ""} />;
+  return <QuizCreation topic={resolvedSearchParams.topic ?? ""} />;
 };
 
 export default QuizPage;
