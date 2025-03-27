@@ -8,6 +8,11 @@ module.exports = {
     './src/**/*.{ts,tsx}',
 	],
   theme: {
+    extend: {
+      borderColor: {
+        'border': 'hsl(var(--border))',
+      },
+    },
     container: {
       center: true,
       padding: "2rem",
