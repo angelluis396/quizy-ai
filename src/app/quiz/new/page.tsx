@@ -33,7 +33,7 @@ export default function NewQuiz() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950 p-4">
+    <div className="min-h-screen flex items-start sm:items-center justify-center bg-gray-50 dark:bg-gray-950 p-4 pt-20 sm:pt-4">
       <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Create a Quiz</h1>

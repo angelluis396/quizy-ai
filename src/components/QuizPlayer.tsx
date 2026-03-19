@@ -48,7 +48,7 @@ export default function QuizPlayer({ quiz, questions }: Props) {
 
   if (finished) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950 p-4">
+      <div className="min-h-screen flex items-start sm:items-center justify-center bg-gray-50 dark:bg-gray-950 p-4 pt-25 sm:pt-4">
         <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 sm:p-10 w-full max-w-md text-center">
           <div className="text-6xl mb-4">{score >= questions.length * 0.7 ? "🎉" : "📚"}</div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Quiz Complete!</h1>
@@ -71,7 +71,7 @@ export default function QuizPlayer({ quiz, questions }: Props) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950 p-4">
+    <div className="min-h-screen flex items-start sm:items-center justify-center bg-gray-50 dark:bg-gray-950 p-4 pt-25 sm:pt-4">
       <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-6 sm:p-8 w-full max-w-lg">
         <div className="flex items-center justify-between mb-6">
           <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
