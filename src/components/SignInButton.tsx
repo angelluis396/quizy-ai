@@ -1,20 +1,13 @@
 "use client";
-import React from "react";
-import { Button } from "./ui/button";
 import { signIn } from "next-auth/react";
 
-type Props = { text: string };
-
-const SignInButton = ({ text }: Props) => {
+export default function SignInButton() {
   return (
-    <Button
-      onClick={() => {
-        signIn("google").catch(console.error);
-      }}
+    <button
+      onClick={() => signIn("google")}
+      className="bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition"
     >
-      {text}
-    </Button>
+      Sign in with Google
+    </button>
   );
-};
-
-export default SignInButton;
+}

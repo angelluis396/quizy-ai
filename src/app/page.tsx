@@ -1,34 +1,20 @@
-import SignInButton from "@/components/SignInButton";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { getAuthSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
+import SignInButton from "@/components/SignInButton";
 
+export default async function Home() {
+  const session = await getAuthSession();
+  if (session?.user) redirect("/dashboard");
 
-export default async  function Home() {
-  const session = await getServerSession();
-  if (session?.user) {
-    redirect("/dashboard");
-  }
   return (
-    <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-      <Card className="w-[300px]">
-        <CardHeader>
-          <CardTitle>Welcome to Quizy AI 🔥!</CardTitle>
-          <CardDescription>
-            Quizy AI is a platform for creating quizzes using AI!. Get started
-            by loggin in below!
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <SignInButton text="Sign In with Google" />
-        </CardContent>
-      </Card>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-50">
+      <div className="bg-white rounded-2xl shadow-xl p-10 w-full max-w-md text-center">
+        <h1 className="text-4xl font-bold text-indigo-600 mb-2">Quizy AI 🔥</h1>
+        <p className="text-gray-500 mb-8">
+          Generate AI-powered quizzes on any topic. Sign in to get started!
+        </p>
+        <SignInButton />
+      </div>
     </div>
-  )
+  );
 }
